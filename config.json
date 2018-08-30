@@ -15,7 +15,7 @@
       "./node_modules/materialize-css/dist/js/materialize.js"
     ],
     "vendorScss": [
-      "@import '../scss/abstracts/_materialize-variables.scss';",
+      "@import '../scss/abstracts/materialize-variables.scss';",
       "@import '../../node_modules/materialize-css/sass/materialize.scss';"
     ]
   }
