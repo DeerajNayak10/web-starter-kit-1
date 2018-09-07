@@ -20,6 +20,7 @@ textarea {
   box-sizing: border-box;
   border: 1px solid $form-element-border-color;
   padding: $form-element-padding;
+  font-family: map-get($forms, 'form-font-family');
 
   &:focus {
     border-color: $form-element-focus-border-color;
