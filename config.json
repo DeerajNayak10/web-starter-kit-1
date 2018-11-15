@@ -4,7 +4,7 @@
       "normalize.css"
     ],
     "vendorScss": [
-      "@import '../../node_modules/normalize.css/normalize';"
+      "@import '../../node_modules/normalize.css/normalize.css';"
     ]
   },
   "add": {
