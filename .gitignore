@@ -9,7 +9,6 @@ init_wp
 .project
 npm-debug.log
 .idea
-.history
 
 # composer
 composer.lock
@@ -37,4 +36,5 @@ tmp
 
 # wordpress configs and uploads
 /wp-config.php
+/.htaccess
 /wp-content/uploads/*
