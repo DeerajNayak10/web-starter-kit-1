@@ -1,1 +1,1 @@
-there will be files files for WordPress + Gulp + Materialize projects
+there will be files for WordPress + Gulp + Materialize projects
