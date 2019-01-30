@@ -1,9 +1,9 @@
 module.exports = {
   folder: {
     tasks: 'tasks',
-    src: 'src',
-    build: 'assets',
-    prod: 'production'
+    src: 'assets',
+    build: 'public',
+    pug: 'assets/templates'
   },
   file: {
     mainHtml: 'index.html',
@@ -16,17 +16,13 @@ module.exports = {
     vendorScssMin: 'vendor.min.css',
   },
   task: {
-    htmlHint: 'html-hint',
+    templates: 'templates',
     esLint: 'es-lint',
     buildCustomJs: 'build-custom-js',
     buildJsVendors: 'build-js-vendors',
     buildSass: 'build-sass',
     buildSassFiles: 'compile-sass-files',
-    buildSassProd: 'build-sass-production',
     buildStylesVendors: 'build-styles-vendors',
-    imageMin: 'image-min',
-    imageClean: 'image-clean',
-    cleanProd: 'clean-production',
     cleanBuild: 'clean-build',
     copyFolders: 'copy-folders',
     copyFoldersProduction: 'copy-folders-production',
@@ -68,7 +64,8 @@ module.exports = {
       '!{.history,.history/**}',
       '!.gitattributes',
       '!.travis.yml',
-      '!.eslintrc'
+      '!.eslintrc',
+      '!{tasks,tasks/**}'
     ];
   },
   getPathesToCopy: function() {
@@ -77,7 +74,8 @@ module.exports = {
       `!{${this.folder.src}/images,${this.folder.src}/images/**}`,
       `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
       `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
-      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`
+      `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`,
+      `!{${this.folder.src}/templates,${this.folder.src}/templates/**}`
     ];
   }
 };

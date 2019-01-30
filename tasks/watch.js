@@ -6,10 +6,14 @@
 const gulp = require('gulp');
 
 module.exports = function (options) {
-  const { files } = options.sassFilesInfo;
-
   return () => {
+    global.watch = true;
     gulp.watch(`./${options.src}/js/**/*`, gulp.series(options.tasks.buildCustomJs, options.tasks.esLint));
+
+    gulp.watch(`${options.pug}/**/*.pug`, gulp.series(options.tasks.templates))
+      .on('all', (event, path) => {
+        global.emittyChangedFile = path;
+      });
 
     gulp.watch(`./${options.src}/scss/**/*`, gulp.series(options.tasks.buildSass));
 
@@ -24,14 +28,8 @@ module.exports = function (options) {
       })
       .on('add', gulp.series(options.tasks.imageMin));
 
-    gulp.watch('./*.html', gulp.series(options.tasks.htmlHint));
-
-    gulp.watch([`./${options.dest}/**/*`, `!./${options.dest}/**/*.map`, './*.html'])
+    gulp.watch([`./${options.dest}/**/*`, './*.html'])
       .on('change', options.browserSync.reload);
-    
-    if (files.length > 0) {
-      gulp.watch(files, gulp.series(options.tasks.buildSassFiles));
-    }
   };
 
 };

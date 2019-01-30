@@ -26,14 +26,14 @@
 (() => {
   'use strict';
 
-  const cfg         = require('./gulp-config.js'),
-        self        = this,
-        gulp        = require('gulp'),
-        del         = require('del'),
-        path        = require('path'),
-        notifier    = require('node-notifier'),
-        gutil       = require('gulp-util'),
-        browserSync = require('browser-sync').create();
+  const cfg = require('./gulp-config.js'),
+    self = this,
+    gulp = require('gulp'),
+    del = require('del'),
+    path = require('path'),
+    notifier = require('node-notifier'),
+    gutil = require('gulp-util'),
+    browserSync = require('browser-sync').create();
 
   /**
    * Require gulp task from file
@@ -66,9 +66,13 @@
   }
 
   /**
-   * Hint HTML
+   * Compile pug
    */
-  requireTask(`${cfg.task.htmlHint}`, `./${cfg.folder.tasks}/`);
+  requireTask(`${cfg.task.templates}`, `./${cfg.folder.tasks}/`, {
+    pug: cfg.folder.pug,
+    dest: './',
+    showError: showError
+  });
 
   /**
    * Lint ES
@@ -207,18 +211,19 @@
     sassFilesInfo: cfg.getPathesForSassCompiling(),
     src: cfg.folder.src,
     dest: cfg.folder.build,
+    pug: cfg.folder.pug,
     imageExtensions: cfg.imageExtensions,
     browserSync: browserSync,
     deleteFile: deleteFile,
     tasks: {
       buildSassFiles: cfg.task.buildSassFiles,
+      templates: cfg.task.templates,
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
       esLint: cfg.task.esLint,
-      htmlHint: cfg.task.htmlHint,
       imageMin: cfg.task.imageMin
     }
-  }, false);
+  });
 
   /**
    * Default Gulp task
@@ -226,12 +231,12 @@
   gulp.task('default', gulp.series(
     cfg.task.cleanBuild,
     gulp.parallel(
+      cfg.task.templates,
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
-      cfg.task.htmlHint,
       cfg.task.esLint,
       cfg.task.imageMin
     ),
@@ -248,12 +253,12 @@
   gulp.task('dev', gulp.series(
     cfg.task.cleanBuild,
     gulp.parallel(
+      cfg.task.templates,
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
-      cfg.task.htmlHint,
       cfg.task.imageMin
     ),
     cfg.task.copyFolders,
@@ -269,18 +274,18 @@
       cfg.task.cleanBuild
     ),
     gulp.parallel(
+      cfg.task.templates,
       cfg.task.buildCustomJs,
       cfg.task.buildJsVendors,
       cfg.task.buildSassProd,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
-      cfg.task.htmlHint,
       cfg.task.esLint,
       cfg.task.imageMin
     ),
     cfg.task.copyFolders,
     cfg.task.copyFoldersProduction
-  ), true);
+  ));
 
   /**
    * Remove image(s) from build folder if corresponding
@@ -290,7 +295,7 @@
    * @param  {String} dest     Name of the destination folder
    */
   function deleteFile(file, src, dest) {
-    let fileName = file.path.toString().split('/').pop();
+    let fileName = file.history.toString().split('/').pop();
     let fileEventWord = file.event == 'unlink' ? 'deleted' : file.event;
 
     let filePathFromSrc = path.relative(path.resolve(src), file.path);
