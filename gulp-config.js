@@ -9,11 +9,11 @@ module.exports = {
     mainHtml: 'index.html',
     mainJs: 'app.js',
     vendorJs: 'vendor.js',
-    vendorJsMin: 'vendor.min.js',
+    vendorJsMin: 'vendor.js',
     mainScss: 'style.scss',
-    mainScssMin: 'style.min.css',
+    mainScssMin: 'styles.css',
     vendorScss: 'vendor.scss',
-    vendorScssMin: 'vendor.min.css',
+    vendorScssMin: 'vendor.css',
   },
   task: {
     templates: 'templates',
@@ -32,7 +32,6 @@ module.exports = {
   autoprefixer: {
     versions: 'last 4 versions'
   },
-  imageExtensions: 'jpg|jpeg|png|svg|gif|ico|tiff',
   getPathesForSassCompiling: function () {
     return {
       files: [],

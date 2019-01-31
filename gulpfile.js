@@ -151,26 +151,11 @@
   });
 
   /**
-   * Clean image build directory
-   */
-  requireTask(`${cfg.task.imageClean}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.build
-  });
-
-  /**
    * Clean build folder
    */
   requireTask(`${cfg.task.cleanBuild}`, `./${cfg.folder.tasks}/`, {
     src: cfg.folder.build
   });
-
-  /**
-   * Clean production folder
-   */
-  requireTask(`${cfg.task.cleanProd}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.prod
-  });
-
 
   /**
    * Copy folders to the build folder
@@ -204,7 +189,6 @@
     src: cfg.folder.src,
     dest: cfg.folder.build,
     pug: cfg.folder.pug,
-    imageExtensions: cfg.imageExtensions,
     browserSync: browserSync,
     deleteFile: deleteFile,
     tasks: {
@@ -252,27 +236,6 @@
     ),
     cfg.task.copyFolders,
     cfg.task.watch
-  ));
-
-  /**
-   * Creating production folder without unnecessary files
-   */
-  gulp.task('production', gulp.series(
-    gulp.parallel(
-      cfg.task.cleanProd,
-      cfg.task.cleanBuild
-    ),
-    gulp.parallel(
-      cfg.task.templates,
-      cfg.task.buildCustomJs,
-      cfg.task.buildJsVendors,
-      cfg.task.buildSassProd,
-      cfg.task.buildSassFiles,
-      cfg.task.buildStylesVendors,
-      cfg.task.esLint
-    ),
-    cfg.task.copyFolders,
-    cfg.task.copyFoldersProduction
   ));
 
   /**
