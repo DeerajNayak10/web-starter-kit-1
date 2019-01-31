@@ -166,14 +166,6 @@
   });
 
   /**
-   * Copy folders to the production folder
-   */
-  requireTask(`${cfg.task.copyFoldersProduction}`, `./${cfg.folder.tasks}/`, {
-    dest: cfg.folder.prod,
-    foldersToCopy: cfg.getPathesToCopyForProduction()
-  });
-
-  /**
    * Start browserSync server
    */
   requireTask(`${cfg.task.browserSync}`, `./${cfg.folder.tasks}/`, {

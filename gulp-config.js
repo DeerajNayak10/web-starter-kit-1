@@ -38,35 +38,6 @@ module.exports = {
       isGcmq: false
      };
   },
-  getPathesToCopyForProduction: function() {
-    return [
-      './**/*',
-      `!{${this.folder.src},${this.folder.src}/**}`,
-      '!{bower,bower/**}',
-      '!{node_modules,node_modules/**}',
-      `!${this.folder.build}/css/**.map`,
-      `!${this.folder.build}/images/info.txt`,
-      '!.bowerrc',
-      '!bower.json',
-      '!.gitignore',
-      '!gulpfile.js',
-      '!LICENSE',
-      '!package.json',
-      `!${this.folder.prod}`,
-      '!README.md',
-      '!readme.txt',
-      '!CONTRIBUTING.md',
-      '!gulp-config.js',
-      '!package-lock.json',
-      '!{tasks,tasks/**}',
-      '!{.git,.git/**}',
-      '!{.history,.history/**}',
-      '!.gitattributes',
-      '!.travis.yml',
-      '!.eslintrc',
-      '!{tasks,tasks/**}'
-    ];
-  },
   getPathesToCopy: function() {
     return [
       `./${this.folder.src}/**`,
