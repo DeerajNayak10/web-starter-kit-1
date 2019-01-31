@@ -151,14 +151,6 @@
   });
 
   /**
-   * Minify images
-   */
-  requireTask(`${cfg.task.imageMin}`, `./${cfg.folder.tasks}/`, {
-    src: cfg.folder.src,
-    dest: cfg.folder.build
-  });
-
-  /**
    * Clean image build directory
    */
   requireTask(`${cfg.task.imageClean}`, `./${cfg.folder.tasks}/`, {
@@ -220,8 +212,7 @@
       templates: cfg.task.templates,
       buildCustomJs: cfg.task.buildCustomJs,
       buildSass: cfg.task.buildSass,
-      esLint: cfg.task.esLint,
-      imageMin: cfg.task.imageMin
+      esLint: cfg.task.esLint
     }
   });
 
@@ -237,8 +228,7 @@
       cfg.task.buildSass,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
-      cfg.task.esLint,
-      cfg.task.imageMin
+      cfg.task.esLint
     ),
     cfg.task.copyFolders,
     gulp.parallel(
@@ -258,8 +248,7 @@
       cfg.task.buildJsVendors,
       cfg.task.buildSass,
       cfg.task.buildSassFiles,
-      cfg.task.buildStylesVendors,
-      cfg.task.imageMin
+      cfg.task.buildStylesVendors
     ),
     cfg.task.copyFolders,
     cfg.task.watch
@@ -280,8 +269,7 @@
       cfg.task.buildSassProd,
       cfg.task.buildSassFiles,
       cfg.task.buildStylesVendors,
-      cfg.task.esLint,
-      cfg.task.imageMin
+      cfg.task.esLint
     ),
     cfg.task.copyFolders,
     cfg.task.copyFoldersProduction
