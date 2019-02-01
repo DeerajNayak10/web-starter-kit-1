@@ -45,6 +45,8 @@ module.exports = {
       `!{${this.folder.src}/js,${this.folder.src}/js/**}`,
       `!{${this.folder.src}/scss,${this.folder.src}/scss/**}`,
       `!{${this.folder.src}/vendor_entries,${this.folder.src}/vendor_entries/**}`,
+      `!{${this.folder.src}/build,${this.folder.src}/build/**}`,
+      `!{${this.folder.src}/html,${this.folder.src}/html/**}`,
       `!{${this.folder.src}/templates,${this.folder.src}/templates/**}`
     ];
   }
