@@ -17,7 +17,7 @@ module.exports = function (options) {
 
     gulp.watch(`./${options.src}/scss/**/*`, gulp.series(options.tasks.buildSass));
 
-    gulp.watch([`./${options.dest}/**/*`, './*.html'])
+    gulp.watch([`./${options.dest}/**/*`, './assets/html/*.html'])
       .on('change', options.browserSync.reload);
   };
 
